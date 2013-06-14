@@ -1,0 +1,31 @@
+\label{capitolo2}
+\section{Intervalli di confidenza}
+\subsection{Intervalli di confidenza per la media}
+Abbiamo visto prima come nel caso di un campione casuale $X_1, \dots ,X_n$ estratto da una popolazione di densità gaussiana di parametri $\mu , \sigma$ si possa stimare la media con la \emph{media campionaria} $\overline{X}$ e la varianza con la \emph{varianza campionaria} $S^2$.\\
+Questo tipo di stima però non ha molto senso in quanto sappiamo che:
+$$P_{\mu,\sigma^2}(\overline{X}=c)=0$$
+Ovvero è nulla la probabilità che $\overline{X}$ assuma il vero valore di $\mu$.\\
+Partiamo dal caso in cui solo la media $\mu$ è incognita mentre la varianza è nota e pari ad un valore fissato; noi possiamo allora stabilire una regione di probabilità in cui possiamo stabilire con una certa precisione la probabilità che il vero valore di $\mu$ sia in quella regione.
+$$P_{\mu,\sigma^2}\Bigg(-\epsilon<\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}<\epsilon\Bigg)=\gamma$$
+
+Dove $\gamma$ è la confidenza con la quale siamo certi che il parametro stimato cada nell'intervallo.
+Svolgendo i calcoli sopra per isolare $\mu$ troviamo che gli estremi dell'intevallo di confidenza sono:
+$$\mu \in \Bigg( \overline{X}-z_{\frac{1+\gamma}{2}}\frac{\sigma}{\sqrt{n}} \ ; \ \overline{X}+z_{\frac{1+\gamma}{2}}\frac{\sigma}{\sqrt{n}}\Bigg)$$
+\\
+\\
+Nel caso in cui la media non sia nota si può utilizzare la varianza campionaria per stimare un IC per la media in questo caso le formule diventano:
+$$P_{\mu,\sigma^2}\Bigg(-\epsilon<\frac{\overline{X}-\mu}{S/\sqrt{n}}<\epsilon\Bigg)=\gamma$$
+Questa volta la quantità $\sqrt{n}(\overline{X}-\mu)/S$ è una t-student con n-1 gradi di libertà $t_{n-1}$ perciò l'iontervallo di confidenza diventa:
+$$\mu \in \Bigg( \overline{X}-t_{n-1}\big(\frac{1+\gamma}{2}\big)\frac{\sigma}{\sqrt{n}} \ ;\ \overline{X}+t_{n-1}\big(\frac{1+\gamma}{2}\big)\frac{\sigma}{\sqrt{n}}\Bigg)$$
+\subsection{Intervalli di confidenza per la varianza}
+Nel caso in cui vogliamo trovare un intervallo di confidenza per la varianza quando la media è incognita, partiamo dalla quantità aleatoria $S^2(n-1)/\sigma^2\sim \chi^2_{n-1}$ fissato un certo valore $\gamma$ dobbiamo fissare gli estremi dell'intervallo che come prima:
+$$P_{\mu,\sigma^2}\Bigg(a<\frac{S^2(n-1)}{\sigma^2}<b\Bigg)=\gamma$$
+Essendo la distribuzione $\chi^2$ una distribuzione asimmetrica possiamo ritrovarci in tre casi specifici:
+\begin{enumerate}
+\item $$\sigma^2 \in \bigg(\frac{S^2(n-1)}{\chi^2_{n-1}(\gamma)} \ ; \ +\infty \bigg)$$
+\item $$\sigma^2 \in \bigg(0 \ ; \ \frac{S^2(n-1)}{\chi^2_{n-1}(1-\gamma)} \bigg)$$
+\item $$\sigma^2 \in \bigg(\frac{S^2(n-1)}{\chi^2_{n-1}(\frac{1+\gamma}{2})} \ ; \ \frac{S^2(n-1)}{\chi^2_{n-1}(\frac{1-\gamma}{2})} \bigg)$$
+
+\end{enumerate}
+Nel caso di media nota i ragionamenti appena fatti sono ancora validi ma stimiamo $\sigma^2$ con la quantità:
+$$S^2_0= \frac{\sum^n_{j=1}(X_j-\mu)^2}{n}$$

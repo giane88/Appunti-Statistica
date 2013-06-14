@@ -1,0 +1,86 @@
+\label{capitolo3}
+\section{Teoria della stima puntuale}
+\subsection{Definizioni}
+Sia X una va con funzione di ripartizione F e densità di probabilità f non completamente specificata, ovvero con un parametro $\theta$ m-dimensionalea valori in $\Theta$ sottoinsieme di $\mathbb{R}^m$.
+Definiamo la statistica T come una variabile aleatoria funzione del campione $T=g(X_1, \dots ,X_n)$. La distribuzione di una statistica T è detta \emph{ distribuzione (o legge) campionaria}.
+Una statistica T non dipende mai dal parametro incognito mentre la distribuzione campionaria in generale dipenderà da $\theta$.\\
+Una funzione $\kappa: \Theta \rightarrow \mathbb{R}$ è detta \emph{caratteristica della popolazione}.\\
+Sianno $X_1, \dots ,X_n \sim f(x,\theta), \; \theta \in \Theta$ e $\kappa(\theta)$ una caratteristica della popolazione. Uno stimatore di $\kappa(\theta)$ basato sul campione $X_1, \dots ,X_n$ è una statistica $T=g(X_1, \dots ,X_n)$ usata per stimare $\kappa(\theta)$. Il valore assunto dallo stimatore è detta stima di $\kappa(\theta)$.
+\subsubsection{Errore quadratico medio}
+Potremmo trovarci, in un problema di stima, nella situazione di dover decidere fra stimatori diversi della stessa caratteristica $\kappa(\theta)$. Utilizzeremo come criterio di scelta la media della prossimità di T a $\kappa(\theta)$
+che esprimiamo in termini di $E_\theta[(T-\kappa(\theta))^2]$.\\
+Se T è stimatore di $\kappa(\theta)$ tale che $E_\theta[(T-\kappa(\theta))^2]<\infty \ \forall \theta \in \Theta$, allora $E_\theta[(T-\kappa(\theta))^2]$ è detto \emph{errore quadratico medio} di T rispetto a $\kappa(\theta)$.\\
+Il MSE di uno stimatore T esiste solo se T ha media e varianza finite, o, equivalentemente, se e solo se ha momento secondo finito.\\
+\textbf{Osservazione:} Per calcolare l'errore quadratico medio è utile decomporlo nel seguente modo:
+$$E_\theta[(T-\kappa(\theta))^2]= Var_\theta(T)+[E_\theta(T)-\kappa(\theta)]^2$$ 
+in cui la quantità $[E_\theta(T)-\kappa(\theta)]$ è detta \emph{distorsione di bias}.\\
+Tra tutti gli stimatori di $\kappa(\theta)$ ci piacerebbe scegliere quello con MSE minore. Questa cosa equivale a minimizzare contemporaneamente varianza e distorsione;  ma questo è impossibile per ogni $\theta$ perciò ci accontentiamo di utilizzare la sottoclasse di stimatori che hanno distorsione nulla; questa classe è detta di stimatori \emph{non distorti o corretti}. L'erroe quadratico medio di uno stimatore non distorto coincide con la sua varianza.
+\subsection{Stimatori non distorti}
+Una statistica T che ammette media per ogni $\theta$ in $\Theta$ è detta \emph{stiamtore non distorto} della caratteristica $\kappa(\theta)$ se 
+$$E_\theta(T)=\kappa(\theta) \qquad \forall\theta\in\Theta$$
+\\
+Se $X_1,\dots,X_n iid \sim f(x,\theta), \ \theta\in\Theta$ ed $E_\theta(X_1)$ esiste qualunque sia $\theta$ allora $E_\theta(\overline{X})=E_\theta(X_1), \ \forall\theta$ e quindi:
+\begin{center}
+\emph{La media campionaria $\overline{X}$ è stimatore non distorto della media teorica}.\\
+\emph{La varianza campionaria $S^2$ è stimatore non distorto della varianza teorica.}
+\end{center}
+\subsection{Proprietà asintotiche degli stimatori}
+\begin{defn}
+Sia $X_1,\dots,X_n$ una successione di variabili aleatorie i.i.d. con comune funzione di densità $f(x,\theta), \ \theta \in \Theta $ e sia $T_n$ uno stimatore di $\kappa(\theta)$ che è funzione delle prime n osservazioni. La successione $\{T_n\}_n$ è \emph{asintoticamente non distorta} per $\kappa(\theta)$ se
+$$\lim_{n \to \infty}E_\theta(T_n)=\kappa(\theta) \qquad \forall\theta \in \Theta$$
+\end{defn}
+%\\
+\begin{defn}
+Sia $X_1,\dots,X_n$ una successione di variabili aleatorie i.i.d. con comune funzione di densità $f(x,\theta), \ \theta \in \Theta $ e sia $T_n$ uno stimatore di $\kappa(\theta)$ che è funzione delle prime n osservazioni. La successione $\{T_n\}_n$ è \emph{consistente in media quadratica} per $\kappa(\theta)$ se
+$$\lim_{n \to \infty}E[(T_n-\kappa(\theta))^2]=0 \qquad \forall\theta \in \Theta$$
+\end{defn}
+%\\
+\begin{defn}
+Sia $X_1,\dots,X_n$ una successione di variabili aleatorie i.i.d. con comune funzione di densità $f(x,\theta), \ \theta \in \Theta $ e sia $T_n$ una statistica funzione soltanto delle prime n osservazioni. La successione $\{T_n\}_n$ è \emph{asintoticamente gaussiana} con \emph{media asintotica} $\mu_n(\theta)$ e \emph{varianza asintotica} $\sigma^2_n(\theta)$ se
+$$\lim_{n \to \infty}P\Bigg(\frac{T_n-\mu_n(\theta)}{\sigma_n(\theta)}\leq z\Bigg)= \Phi(z), \qquad \forall z \in \mathbb{R}$$
+\end{defn}
+\subsection{Diseguaglianza di Fréchet-Cramer-Rao}
+Abbiamo visto nei capitoli precedenti come per uno stimatore non distorto ridurre il MSE significhi ridurre la varianza dello stimatore. Ora ci chiediamo qual'è la minima varianza che lo stimatore può avere e quale sia lo stimatore con tale varianza.\\
+Siano $X_1,\dots,X_n$ variabile aleatorie iid con comune densità $f(x,\theta), \ \theta \in\Theta$ e sia $T=g(X_1,\dots,X_n)$ uno stimatore non distorto della caratteristica $\kappa(\theta)$ a varianza finita. Assumiamo che le seguenti condizioni di regolarità siano soddisfatte:
+\begin{enumerate}
+\item $\Theta$ è un intervallo aperto in $\mathbb{R}$;
+\item $S=\{x: \ f(x,\theta)>0$ è indipendente da $\theta$;
+\item $\theta \mapsto f(x,\theta)$
+ è derivabile su $\Theta, \; \forall x\in S$;
+\item $E_\theta\Bigg(\frac{\partial}{\partial \theta}log f(X_1,\theta)\Bigg)=0 \quad \forall\theta\in\Theta$;
+\item $0<E_\theta\Bigg[\Bigg(\frac{\partial}{\partial \theta}log f(X_1,\theta)\Bigg)^2\Bigg]<\infty \quad \forall\theta\in\Theta$;
+\item $\kappa: \Theta \rightarrow \mathbb{R}$ è derivabile su $\Theta$ e:
+$$k'(\theta)=E_\theta\bigg(T\frac{\partial}{\partial\theta}log L_\theta(X_1,\dots,X_n)\Bigg)\qquad \forall\theta\in\Theta$$
+\end{enumerate}
+
+Allora
+\begin{equation}
+Var_\theta(T)\geq \frac{(\kappa'(\theta))^2}{nI(\theta)} \quad \forall\theta\in\Theta
+\end{equation}
+
+Dove $$I(\theta)=E_\theta\Bigg[\Bigg(\frac{\partial}{\partial \theta}log f(X_1,\theta)\Bigg)^2\Bigg]$$
+è nota come informazione di Fisher.\\
+\\
+\textbf{Dimostrazione} Per maggiore semplicità introduciamo le variabili aleatorie $Y_1,\dots,Y_n$ definite da 
+$$Y_j= \frac{\partial}{\partial\theta}log f(X_j,\theta),\qquad\forall j=1,\dots,n$$
+$Y_1,\dots,Y_n$ sono variabili aleatorie iid a media nulla e varianza finita $I(\theta) \; \forall\theta$. Infatti 
+$$E_\theta(Y_j=)=E_\theta\Bigg(\frac{\partial}{\partial\theta}log f(X_j,\theta)\Bigg)=0 \qquad\quad [per \; l'ipotesi \; (4)]$$
+e
+$$Var_\theta(Y_j)=E_\theta(Y_j^2)=E_\theta\Bigg[\Bigg(\frac{\partial}{\partial\theta}log f(X_j,\theta)\Bigg)^2\Bigg]=I(\theta) \in (0,\infty)\qquad[per \; l'ipotesi \; (5)]$$
+Inoltre
+$$\frac{\partial}{\partial\theta}logL_\theta(X_1,\dots,X_n)=\frac{\partial}{\partial\theta}log \prod^n_{j=1}f(X_j,\theta)=\sum^n_{j=1}\frac{\partial}{\partial\theta}log f(X_j,\theta)=\sum^n_{j=1}Y_j$$
+da cui ricaviamo che
+\begin{equation}\label{eq1}
+E_\theta\bigg(\frac{\partial}{\partial\theta}logL_\theta(X_1,\dots,X_n)\bigg)=\sum^n_{j=1}E_\theta(Y_j)
+\end{equation}
+e
+\begin{equation}\label{eq2}
+Var_\theta\bigg(\frac{\partial}{\partial\theta}logL_\theta(X_1,\dots,X_n)\bigg)=\sum^n_{j=1}Var_\theta(Y_j)=nI(\theta)
+\end{equation}
+Dall'ipotesi (6 )e dall'equazione \ref{eq1} ricaviamo che
+$$\kappa'(\theta)=E_\theta \Bigg(T\frac{\partial}{\partial\theta}logL_\theta(X_1,\dots,X_n)\Bigg)=Cov\bigg(T,\frac{\partial}{\partial\theta}logL_\theta(X_1,\dots,X_n)\bigg)$$
+cosicché
+$$(\kappa'(\theta))^2=\bigg[Cov\bigg(T,\frac{\partial}{\partial\theta}logL_\theta(X_1,\dots,X_n)\bigg)\bigg]^2$$
+da cui per le proprietà della covarianza
+$$\leq Var_\theta (T) Var_\theta\bigg(\frac{\partial}{\partial\theta}logL_\theta(X_1,\dots,X_n)\Bigg)$$
+$$=Var_\theta(T) n I(\theta)\qquad [per \; l'equazione \; \ref{eq2}]$$

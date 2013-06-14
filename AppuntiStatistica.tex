@@ -1,0 +1,42 @@
+%\documentclass[a4paper,11pt]{report}
+\documentclass[a4paper,11pt]{scrartcl}
+
+\usepackage[latin1]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+
+\usepackage{amsthm}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definizione}[section]
+
+
+
+\title{Appunti per l'Orale di Statistica}
+\author{Matteo Gianello}
+\date{\today}
+
+\pdfinfo{%
+  /Title    (Appunti per l'Orale di Statistica)
+  /Author   (Matteo Gianello)
+  /Creator  (Matteo Gianello)
+  /Producer ()
+  /Subject  ()
+  /Keywords (Orale Epifani Statistica Informatica Polimi)
+}
+
+\begin{document}
+\thispagestyle{empty}
+\maketitle
+\newpage
+
+\thispagestyle{plain}
+\tableofcontents
+\pagestyle{plain}
+\include{capitolo1}
+\include{capitolo2}
+\include{capitolo3}
+\include{capitolo4}
+
+\end{document}

@@ -1,0 +1,56 @@
+\label{capitolo4}
+\section{Verifica di ipotesi}
+\subsection{Definizioni}
+Un'\emph{ipotesi statistica} è un'asserzione o una congettura sulla fdr F.
+Se F, e quindi la corrispondente densità f, è nota a meno di un parametro $\theta=(\theta_1,\dots,\theta_m)\in\Theta\subset\mathbb{R}^m$, l'ipotesi statistica è un'asserzione su $\theta$.
+Un'ipotesi è \emph{semplice} se specifica completamente la f.d.r. F della popolazione; è \emph{composta} se non è semplice.\\
+In questo capitolo ci occuperemo di ipotesi che riguardano solo il parametro incognito. Nei problemi che affronteremo sono presenti due ipotesi chiamate $H_0$ e $H_1$ una è detta \emph{ipotesi nulla} mentre l'altra è detta \emph{ipotesi alternativa}.
+Il vero valore che il parametro $\theta$ assume in natura è compatibile solo o con $H_0$ o con $H_1$ ma non con entrambi.\\
+Dobbiamo ora stabilire una regola che ci permetta di decidere tra le due ipotesi. Decidiamo di partizionare l'insieme $\mathbb{R}^n$ di tutte le realizzazioni campionarie $X_1,\dots,X_n$ in due regioni $\mathcal{G}$ e $\mathcal{G}^c$ ed effettuiamo il campionamento; se $(x_1,\dots,x_n)\in \mathcal{G}$ rifiutiamo $H_0$ se invece $(x_1,\dots,x_n)\in \mathcal{G}^c$ allora accettiamo $H_0$.
+La $\mathcal{G}$ è detta regione di \emph{rifiuto} o regione \emph{critica} mentre $\mathcal{G}^c$ è detta regione di \emph{accettazione}.\\
+Può capitare di prendere delle decisioni sbagliate; gli errori che si possono commettere sono di due tipi:
+\begin{description}
+    \item[Errore di I tipo o prima specie:] quando rifiutiamo $H_0$ ma $H_0$ è vera.
+	\item[Errore di II tipo o seconda specie:] quando accettiamo $H_0$ ma $H_0$ è falsa.
+\end{description}
+Questi due errori non possono essere calcolati con precisione ma possiamo calcolare la loro probabilità. Sia $\alpha(\theta)$ la probabilità di errore del \emph{I} tipo e sia $\beta(\theta)$ la probabilità di errore di \emph{II} tipo allora:
+\begin{equation}
+	\alpha(\theta)=P_\theta("Rifiutare \ H_0")=P_\theta((x_1,\dots,x_n) \in \mathcal{G}), \qquad \theta\in\Theta_0
+\end{equation}
+\begin{equation}
+	\beta(\theta)=P_\theta("Accettare \ H_0")=P_\theta((x_1,\dots,x_n) \in \mathcal{G}^c), \qquad \theta\in\Theta_1
+\end{equation}
+\subsection{Lemma di Neyuman-Pearson}
+Un buon test è tale per cui $\alpha$ e $\beta$ sono trascurabili; ma in realtà esiste un trade-off cosicchè è impossibile minimizzare entrambi. Perciò si procede a fissare un valore per l'errore che si ritiene più grave (quello di I tipo) e poi si minimizza il secondo. Un test creato secondo questo criterio è detto \emph{test uniformemente più potente}.
+Nel caso di ipotesi entrambi semplice il test creato è specificato dal \emph{Lemma di Neyman-Pearson}.\\
+\\
+Sia $X_1,\dots,X_n$ un campione casuale con verosimiglianza $L_\theta(x_1,\dots,x_n)$ e supponiamo di voler verificare $H_0:\theta=\theta_0$ contro $H_1:\theta=\theta_1$.
+Sia $\mathcal{G}$ la regione critica definita da:
+$$\mathcal{G}=\Bigg\{(x_1,\dots,x_n): \; \frac{L_{\theta_0}(x_1,\dots,x_n)}{L_{\theta_1}(x_1,\dots,x_n)}\leq \delta\Bigg\}$$
+Allora $\mathcal{G}$ è la regione critica che genera massima potenza fra tutte le regioni critiche di ampiezza minore o uguale all'ampiezza di $\mathcal{G}$.\\
+\textbf{Dimostrazione} Dobbiamo dimostrare che per qualunque regione critica $\mathcal{F}$ di ampiezza al più pari a quella di $\mathcal{G}$ cioè tale che $P_{\theta_0}(\mathcal{F})\leq P_{\theta_0}(\mathcal{G})$ vale $P_{\theta_1}(\mathcal{F})\leq P_{\theta_1}(\mathcal{G})$.
+\\
+Osserviamo che possiamo rappresentare $\mathcal{F}$ e $\mathcal{G}$ come:
+$$\mathcal{F}=(\mathcal{F}\cap\mathcal{G})\cup(\mathcal{F}\cap\mathcal{G}^c),\qquad
+\mathcal{G}=(\mathcal{F}\cap\mathcal{G})\cup(\mathcal{F}^c\cap\mathcal{G})$$
+allora
+\begin{equation}\label{np1}
+	P_{\theta_i}(\mathcal{F})\leq P_{\theta_i}(\mathcal{G}) \ se \ solo \ se \ P_{\theta_i}(\mathcal{F}\cap\mathcal{G}^c)\leq P_{\theta_i}(\mathcal{F}^c\cap\mathcal{G}) \quad per \ i=0,1.
+\end{equation}
+Inoltre
+$$L_{\theta_0}(x_1,\dots,x_n)\leq \delta L_{\theta_1}(x_1,\dots,x_n) \qquad \forall(x_1,\dots,x_n)\in\mathcal{G}$$
+$$L_{\theta_1}(x_1,\dots,x_n) < L_{\theta_0}(x_1,\dots,x_n)/\delta  \qquad \forall(x_1,\dots,x_n)\in\mathcal{G}^c$$
+da cui otteniamo che:
+\begin{equation}\label{np2}
+P_{\theta_0}(A)\leq \delta P_{\theta_1}(A)\quad \forall A \subset \mathcal{G}
+\end{equation}
+\begin{equation}\label{np3}
+P_{\theta_1}(B)\leq \delta P_{\theta_0}(B)\quad \forall B \subset \mathcal{G}^c
+\end{equation}
+Infatti
+$$P_{\theta_1}(B)=\int_B L_{\theta_1}(x_1,\dots,x_n) dx_1\dots dx_n= \frac{1}{\delta}\int_B L_{\theta_0}(x_1,\dots,x_n) dx_1\dots dx_n=\frac{P_{\theta_0}(B)}{\delta}$$
+Pertanto
+$$P_{\theta_1}(\mathcal{F}\cap \mathcal{G}^c) \leq P_{\theta_0}(\mathcal{F} \cap \mathcal{G}^c)/\delta \quad [per \ la \ \ref{np3}]$$
+$$\leq P_{\theta_0}(\mathcal{F}^c \cap \mathcal{G})/\delta \quad [per \ la \ \ref{np1} \ con \ i=0]$$
+$$\leq \delta P_{\theta_1}(\mathcal{F} \cap \mathcal{G}^c)/\delta \quad [per \ la \ \ref{np2}]$$
+$$= P_{\theta_1}(\mathcal{F} \cap \mathcal{G}^c)$$

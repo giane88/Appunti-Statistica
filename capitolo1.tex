@@ -1,0 +1,59 @@
+\label{capitolo1}
+\section{Media e varianza campionaria}
+\subsection{Media campionaria}
+Definiamo \textit{campione casuale} lungo \emph{n} un insieme di \textit{n} variabili aleatorie i.i.d. estratte da una popolazione di densità \emph{f}. La media $\mu=E(X_1)$ uguale per tutte le $X_i$ del campione prende il nome di \emph{media della popolazione} e la comune varianza $\sigma^2$ è detta \emph{varianza della popolazione}.\\
+Si chiama \emph{media campionaria} di un campione casuale $X_1 \dots X_n$ la quantità:
+$$\frac{X_1+ \dots +X_n}{n}$$
+e si indica con  $\overline{X}_n$. La media campionaria dipende dal campione è perciò una variabile aleatoria.\\
+Valore atteso e varianzaq della media campionaria possono essere facilmente calcolate tramite le proprietà di valore atteso e varianza:
+$$E(\overline{X}_n)=E\Bigg(\frac{\sum^n_{j=1}{X_j}}{n}\Bigg)=\frac{E\Big(\sum^n_{j=1}{X_j}\Big)}{n}=\frac{n\times \mu}{n}= \mu$$
+$$Var(\overline{X}_n)=Var\Bigg(\frac{\sum^n_{j=1}{X_j}}{n}\Bigg)= \frac{nVar(X_1)}{n^2}=\frac{\sigma^2}{n}$$
+\subsection{Varianza campionaria}
+Dato un campione casuale $X_1 \dots X_n$ si definisce \emph{varianza campionaria} la quantità:
+$$S^2=\frac{1}{n-1}\sum_{j=1}^{n}(X_j-\overline{X})^2$$
+per dimostrare la non distorsione di questo stimatore dobbiamo innanzitutto dimostrare le seguenti espressioni:
+\begin{equation}\label{f1}
+\sum_{j=1}^{n}(X_j-\overline{X})^2=\sum_{j=1}^{n}(X_j-\mu)^2-n(\overline{X}-\mu)^2
+\end{equation}
+\begin{equation}\label{f2}
+E\bigg(\sum_{j=1}^{n}(X_j-\overline{X})^2\Bigg)=(n-1)\sigma^2
+\end{equation}
+\textbf{Dimostrazione \ref{f1}}
+
+$$\sum_{j=1}^{n}(X_j-\overline{X})^2=\sum_{j=1}^{n}[(X_j-\mu)-(\overline{X}-\mu)]^2$$
+$$=\sum_{j=1}^{n}[(X_j-\mu)^2+(\overline{X}-\mu)^2-2(X_j-\mu)(\overline{X}-\mu)]$$
+$$=\sum_{j=1}^{n}(X_j-\mu)^2+n(\overline{X}-\mu)^2-2(X_j-\mu)\sum_{j=1}^{n}(\overline{X}-\mu)$$
+$$=\sum_{j=1}^{n}(X_j-\mu)^2+n(\overline{X}-\mu)^2-2n(X_j-\mu)^2$$
+$$=\sum_{j=1}^{n}(X_j-\mu)^2-n(\overline{X}-\mu)^2$$
+
+\textbf{Dimostrazione \ref{f2}}
+$$E\Bigg(\sum_{j=1}^n(X_j-\overline{X})^2\Bigg)=E\sum_{j=1}^{n}(X_j-\mu)^2-nE(\overline{X}-\mu)^2$$
+$$\sum_{j=1}^{n}E(X_j-\mu)^2-nVar(\overline{X})=n\sigma^2-\sigma^2$$
+
+Da queste due formule ricaviamo che $E(S^2)=\sigma^2$ condizione necessaria e sufficente per la non distorsione dello stimatore.
+\subsection{Legge dei grandi numeri}
+Sia $X_1,X_2,\dots$ una successione di variabili aleatorie i.i.d. con media $\mu$ e varianza $\sigma^2$ finite e sia $\overline{X}_n$ la media campionaria, allora per ogni $\epsilon>0$:
+$$\lim_{n \to \infty}P(|\overline{X}_n-\mu|>\epsilon)=0$$
+Dalla diseguaglianza di Chebychev che afferma:
+$$P(|X-E(X)|>\epsilon)\leq \frac{Var(X)}{\epsilon^2}$$
+\subsection{Distribuzioni campionarie}
+La prima densità che introduciamo è la densità $\Gamma(\alpha,\beta)$ questa densità è utile in quanto permette di ricavare altre densità favose da essa.
+La sua funzione di densità ha la forma seguente:
+$$f(x,\alpha,\beta)= \frac{(1\slash \beta)^\alpha}{\Gamma(\alpha)}e^{-\frac{x}{\beta}}x^{\alpha-1} \textbf{1}_{(0,+\infty)}(x)$$
+Mentre la sua funzione generatrice dei momenti è:
+$$M(t)=E(e^{tX})=\frac{1}{(1-\beta t)^\alpha} \qquad \forall t < 1/\beta$$
+Nel caso in cui $\alpha=1$ abbiamo che la densità \emph{Gamma} diventa un'esponenziale di parametro beta $\xi(\beta)$.\\
+ Nel caso invece in qui sia $\alpha=\frac{n}{2}$ la densità che troviamo è una $\chi^2_n$.\\
+Se $X\sim N(0,1)$ allora $X^2 \sim \chi^2_1$; se prendiamo un campione casuale $X_1, \dots ,X_n \sim N(0,1)$ allora $\sum^n_{j=1} X^2_j \sim \chi^2_n$
+\\
+Vediamo ora alcune proprietà che portano alle affermazioni appena fatte
+\begin{enumerate}
+\item Se $X \sim \Gamma(\alpha ,\beta), \ c>0$ e $Y=cX$ allora $Y \sim \Gamma(\alpha ,c \beta)$;
+\item Se X,Y sono v.a. indipendenti con $X \sim \Gamma(\alpha ,\beta)$ e $Y \sim \Gamma(c,\beta)$ allora $X+Y \sim \Gamma(\alpha + c,\beta)$ e viceversa.
+\end{enumerate}
+\textbf{Dimostrazione}
+\begin{enumerate}
+\item $M_Y(t)= E(e^{tcX})=M_X(ct)=\frac{1}{(1-\beta ct)^\alpha} \qquad t<\frac{1}{c\beta}$
+\item $$M_{X+Y}(t)=E(e^{t(X+Y)})=E(e^{tX}e^{tY})=E(e^{tX})E(e^{tY})$$
+$$=M_X(t)M_Y(t)=\frac{1}{(1-\beta t)^\alpha}\times \frac{1}{(1-\beta ct)^c}=\frac{1}{(1-\beta ct)^\alpha +c}$$
+\end{enumerate}
